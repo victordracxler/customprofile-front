@@ -10,12 +10,12 @@ export default function SignInForm() {
 
 	const navigate = useNavigate();
 
-	const { setBearer, setUser } = useContext(UserContext);
+	const { setBearer, setUser, baseUrl } = useContext(UserContext);
 
 	function handleSignIn(e) {
 		e.preventDefault();
 
-		const url = 'https://api-mywallet.onrender.com/signin';
+		const url = `${baseUrl}/sign-in`;
 
 		const body = {
 			email: email,
@@ -29,10 +29,10 @@ export default function SignInForm() {
 				const newBearer = `Bearer ${res.data.token}`;
 
 				setBearer(newBearer);
-				localStorage.setItem('mwtoken', JSON.stringify(newBearer));
+				localStorage.setItem('mcptoken', JSON.stringify(newBearer));
 				setUser(res.data.username);
 				localStorage.setItem(
-					'mwuser',
+					'mcpuser',
 					JSON.stringify(res.data.username)
 				);
 				navigate('/home');

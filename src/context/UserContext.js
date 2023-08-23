@@ -15,6 +15,8 @@ function UserProvider({ children }) {
 			: undefined
 	);
 
+	const baseUrl = 'http://localhost:5000';
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -22,6 +24,7 @@ function UserProvider({ children }) {
 				setUser,
 				bearer,
 				setBearer,
+				baseUrl,
 			}}
 		>
 			{children}

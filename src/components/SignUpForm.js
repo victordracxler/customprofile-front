@@ -1,23 +1,25 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormBttn, FormInput, FormWrapper } from './SignInForm';
+import UserContext from '../context/UserContext';
 
 export default function SignUpForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
 	const [repeatPassword, setRepeatPassword] = useState('');
+	const { baseUrl } = useContext(UserContext);
 
 	const navigate = useNavigate();
 
 	function handleSignUp(e) {
 		e.preventDefault();
 
-		const url = 'https://api-mywallet.onrender.com/signup';
+		const url = `${baseUrl}/sign-up`;
 
 		const body = {
-			username: username,
+			name: username,
 			password: password,
 			repeatPassword: repeatPassword,
 			email: email,

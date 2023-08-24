@@ -6,14 +6,14 @@ import PersonalInfo from '../components/PersonalInfo';
 import axios from 'axios';
 
 export default function MainPage() {
-	const { user, baseUrl, userId } = useContext(UserContext);
+	const { user, baseUrl, userId, bearer } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const navigate = useNavigate();
 	const url = `${baseUrl}/user-info/${userId}`;
 
-	// if (!user && !bearer) {
-	// 	return navigate('/');
-	// }
+	if (!user && !bearer) {
+		return navigate('/');
+	}
 
 	useEffect(() => {
 		const promise = axios

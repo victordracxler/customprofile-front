@@ -15,7 +15,7 @@ function UserProvider({ children }) {
 			: undefined
 	);
 
-	const baseUrl = 'http://localhost:5000';
+	const baseUrl = process.env.REACT_APP_API_ADDRESS;
 
 	const [userId, setUserId] = useState(null);
 

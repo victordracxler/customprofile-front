@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import UserContext from '../context/UserContext';
+import PersonalInfo from '../components/PersonalInfo';
 
 export default function MainPage() {
 	const { user, bearer } = useContext(UserContext);
@@ -24,6 +25,7 @@ export default function MainPage() {
 				<h1>Olá, {user}</h1>
 				<ion-icon name="exit-outline"></ion-icon>
 			</Title>
+			<PersonalInfo />
 
 			<BttnsWrapper>
 				<AddEntryBttn
@@ -35,7 +37,7 @@ export default function MainPage() {
 						name="add-circle-outline"
 						onClick={() => signOut()}
 					></ion-icon>
-					<h2>Nova entrada</h2>
+					<h2>Editar informações</h2>
 				</AddEntryBttn>
 			</BttnsWrapper>
 		</PageWrapper>
@@ -69,14 +71,14 @@ export const Title = styled.div`
 const BttnsWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	width: 326px;
 	margin-top: 13px;
 `;
 
 export const AddEntryBttn = styled.div`
 	width: 155px;
-	height: 114px;
+	height: 50px;
 	background-color: #1b1b1e;
 	color: #ffffff;
 	border-radius: 5px;

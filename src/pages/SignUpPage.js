@@ -6,7 +6,7 @@ export default function SignUpPage() {
 	const navigate = useNavigate();
 	return (
 		<>
-			<LogoTitle>MyWallet</LogoTitle>
+			<LogoTitle>MyCustomProfile</LogoTitle>
 			<SignUpForm />
 
 			<SignUpLink onClick={() => navigate('/')}>

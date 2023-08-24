@@ -23,9 +23,28 @@ export default function EditPersonalInfo(params) {
 			});
 	}, []);
 
+	function handleSubmit(e) {
+		e.preventDefault();
+		// const entry = {
+		// 	type,
+		// 	amount,
+		// 	description,
+		// };
+
+		// axios
+		// 	.post(url, entry, { headers })
+		// 	.then((res) => {
+		// 		console.log(res.data);
+		// 		navigate('/home');
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err.response);
+		// 	});
+	}
+
 	return (
 		<>
-			<InfoWrapper>
+			<EditForm onSubmit={handleSubmit}>
 				<h1>Informações pessoais</h1>
 
 				<InfoRow>
@@ -70,7 +89,11 @@ export default function EditPersonalInfo(params) {
 					<RowTitle>twitter</RowTitle>
 					<TextInput type="text" placeholder={userInfo.twitterUrl} />
 				</InfoRow>
-			</InfoWrapper>
+
+				<SubmitChangesBttn type="submit">
+					Atualizar dados
+				</SubmitChangesBttn>
+			</EditForm>
 		</>
 	);
 }
@@ -83,3 +106,23 @@ const TextInput = styled.input`
 	padding: 4px;
 	font-size: 16px;
 `;
+
+const EditForm = styled.form`
+	width: 326px;
+	min-height: 446px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 12px 12px 10px 12px;
+	font-family: 'Raleway', sans-serif;
+
+	h1 {
+		font-size: 22px;
+		font-weight: bold;
+		margin-bottom: 15px;
+	}
+`;
+
+const SubmitChangesBttn = styled.button``;

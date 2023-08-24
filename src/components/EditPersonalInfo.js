@@ -3,11 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import UserContext from '../context/UserContext';
-import { InfoRow, InfoWrapper, RowTitle } from './PersonalInfo';
+import { InfoRow, RowTitle } from './PersonalInfo';
 
 export default function EditPersonalInfo(params) {
 	const { userId, baseUrl } = useContext(UserContext);
-	const [userInfo, setUserInfo] = useState({});
 
 	const [imageUploaded, setImageUploaded] = useState('');
 
@@ -24,10 +23,9 @@ export default function EditPersonalInfo(params) {
 	const url = `${baseUrl}/user-info/${userId}`;
 
 	useEffect(() => {
-		const promise = axios
+		axios
 			.get(url)
 			.then((res) => {
-				setUserInfo(res.data);
 				setFormValues(res.data);
 			})
 			.catch((err) => {
@@ -58,16 +56,6 @@ export default function EditPersonalInfo(params) {
 		formData.append('linkedinUrl', linkedinUrl);
 		formData.append('instagramUrl', instagramUrl);
 		formData.append('twitterUrl', twitterUrl);
-
-		const userNewInfo = {
-			firstName,
-			lastName,
-			email,
-			bio,
-			linkedinUrl,
-			instagramUrl,
-			twitterUrl,
-		};
 
 		await axios
 			.post(url, formData, {

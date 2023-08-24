@@ -1,8 +1,4 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import UserContext from '../context/UserContext';
-import PersonalInfo from '../components/PersonalInfo';
 import { AddEntryBttn, BttnsWrapper, PageWrapper, Title } from './MainPage';
 import EditPersonalInfo from '../components/EditPersonalInfo';
 

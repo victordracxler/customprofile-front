@@ -6,17 +6,13 @@ import PersonalInfo from '../components/PersonalInfo';
 import axios from 'axios';
 
 export default function MainPage() {
-	const { user, baseUrl, userId, bearer } = useContext(UserContext);
+	const { baseUrl, userId } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const navigate = useNavigate();
 	const url = `${baseUrl}/user-info/${userId}`;
 
-	// if (!user && !bearer) {
-	// 	return navigate('/');
-	// }
-
 	useEffect(() => {
-		const promise = axios
+		axios
 			.get(url)
 			.then((res) => {
 				setFirstName(res.data.firstName);
@@ -27,8 +23,6 @@ export default function MainPage() {
 	}, []);
 
 	function signOut() {
-		// localStorage.removeItem('mwuser');
-		// localStorage.removeItem('mwtoken');
 		localStorage.clear();
 		navigate('/');
 	}

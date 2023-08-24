@@ -19,6 +19,8 @@ export default function EditPersonalInfo(params) {
 	const [instagramUrl, setInstagramUrl] = useState('');
 	const [twitterUrl, setTwitterUrl] = useState('');
 
+	const navigate = useNavigate();
+
 	const url = `${baseUrl}/user-info/${userId}`;
 
 	useEffect(() => {
@@ -72,7 +74,10 @@ export default function EditPersonalInfo(params) {
 			.post(url, formData, {
 				headers: { 'Content-Type': 'multipart/form-data' },
 			})
-			.then((res) => console.log(res.data))
+			.then((res) => {
+				console.log(res.data);
+				navigate('/home');
+			})
 			.catch((err) => console.log(err));
 	}
 
@@ -197,4 +202,8 @@ const EditForm = styled.form`
 	}
 `;
 
-const SubmitChangesBttn = styled.button``;
+const SubmitChangesBttn = styled.button`
+	font-family: 'Raleway', sans-serif;
+	width: 100px;
+	height: 40px;
+`;

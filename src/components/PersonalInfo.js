@@ -56,17 +56,29 @@ export default function PersonalInfo(params) {
 
 				<InfoRow>
 					<RowTitle>linkedin</RowTitle>
-					<RowContent>{userInfo.linkedinUrl}</RowContent>
+					<RowContent>
+						<a href={userInfo.linkedinUrl} target="_blank">
+							{userInfo.linkedinUrl}
+						</a>
+					</RowContent>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>instagram</RowTitle>
-					<RowContent>{userInfo.instagramUrl}</RowContent>
+					<RowContent>
+						<a href={userInfo.instagramUrl} target="_blank">
+							{userInfo.instagramUrl}
+						</a>
+					</RowContent>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>twitter</RowTitle>
-					<RowContent>{userInfo.twitterUrl}</RowContent>
+					<RowContent>
+						<a href={userInfo.twitterUrl} target="_blank">
+							{userInfo.twitterUrl}
+						</a>
+					</RowContent>
 				</InfoRow>
 			</InfoWrapper>
 		</>
@@ -118,6 +130,9 @@ const RowContent = styled.div`
 	padding: 4px;
 	font-size: 16px;
 
+	a {
+		text-decoration: none;
+	}
 	img {
 		width: 100%;
 	}

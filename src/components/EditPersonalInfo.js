@@ -9,6 +9,16 @@ export default function EditPersonalInfo(params) {
 	const { userId, baseUrl } = useContext(UserContext);
 	const [userInfo, setUserInfo] = useState({});
 
+	const [imageUploaded, setImageUploaded] = useState('');
+
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [bio, setBio] = useState('');
+	const [email, setEmail] = useState('');
+	const [linkedinUrl, setLinkedinUrl] = useState('');
+	const [instagramUrl, setInstagramUrl] = useState('');
+	const [twitterUrl, setTwitterUrl] = useState('');
+
 	const url = `${baseUrl}/user-info/${userId}`;
 
 	useEffect(() => {
@@ -17,77 +27,139 @@ export default function EditPersonalInfo(params) {
 			.then((res) => {
 				console.log(res.data);
 				setUserInfo(res.data);
+				setFormValues(res.data);
 			})
 			.catch((err) => {
 				console.log(err.response.data);
 			});
 	}, []);
 
-	function handleSubmit(e) {
-		e.preventDefault();
-		// const entry = {
-		// 	type,
-		// 	amount,
-		// 	description,
-		// };
+	function setFormValues(data) {
+		setFirstName(data.firstName);
+		setLastName(data.lastName);
+		setBio(data.bio);
+		setEmail(data.email);
+		setLinkedinUrl(data.linkedinUrl);
+		setInstagramUrl(data.instagramUrl);
+		setTwitterUrl(data.twitterUrl);
+	}
 
-		// axios
-		// 	.post(url, entry, { headers })
-		// 	.then((res) => {
-		// 		console.log(res.data);
-		// 		navigate('/home');
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err.response);
-		// 	});
+	async function handleSubmit(e) {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		formData.append('imageUploaded', imageUploaded);
+		formData.append('firstName', firstName);
+		formData.append('lastName', lastName);
+		formData.append('email', email);
+		formData.append('bio', bio);
+		formData.append('linkedinUrl', linkedinUrl);
+		formData.append('instagramUrl', instagramUrl);
+		formData.append('twitterUrl', twitterUrl);
+
+		const userNewInfo = {
+			firstName,
+			lastName,
+			email,
+			bio,
+			linkedinUrl,
+			instagramUrl,
+			twitterUrl,
+		};
+
+		await axios
+			.post(url, formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			})
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
 	}
 
 	return (
 		<>
-			<EditForm onSubmit={handleSubmit}>
+			<EditForm
+				onSubmit={handleSubmit}
+				action={url}
+				method="POST"
+				encType="multipart/form-data"
+			>
 				<h1>Informações pessoais</h1>
 
 				<InfoRow>
 					<RowTitle>Foto</RowTitle>
-					<TextInput type="file" />
+					<TextInput
+						type="file"
+						onChange={(e) => {
+							setImageUploaded(e.target.files[0]);
+						}}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Nome</RowTitle>
-					<TextInput type="text" placeholder={userInfo.firstName} />
+					<TextInput
+						type="text"
+						value={firstName}
+						required
+						onChange={(e) => setFirstName(e.target.value)}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Sobrenome</RowTitle>
-					<TextInput type="text" placeholder={userInfo.lastName} />
+					<TextInput
+						type="text"
+						value={lastName}
+						onChange={(e) => setLastName(e.target.value)}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Email</RowTitle>
-					<TextInput type="text" placeholder={userInfo.email} />
+					<TextInput
+						required
+						type="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Sobre mim</RowTitle>
-					<TextInput type="text" placeholder={userInfo.bio} />
+					<TextInput
+						type="text"
+						value={bio}
+						maxLength="300"
+						onChange={(e) => setBio(e.target.value)}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>linkedin</RowTitle>
-					<TextInput type="text" placeholder={userInfo.linkedinUrl} />
+					<TextInput
+						type="url"
+						value={linkedinUrl}
+						onChange={(e) => setLinkedinUrl(e.target.value)}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>instagram</RowTitle>
 					<TextInput
-						type="text"
-						placeholder={userInfo.instagramUrl}
+						type="url"
+						value={instagramUrl}
+						onChange={(e) => setInstagramUrl(e.target.value)}
 					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>twitter</RowTitle>
-					<TextInput type="text" placeholder={userInfo.twitterUrl} />
+					<TextInput
+						type="url"
+						value={twitterUrl}
+						onChange={(e) => setTwitterUrl(e.target.value)}
+					/>
 				</InfoRow>
 
 				<SubmitChangesBttn type="submit">

@@ -117,4 +117,8 @@ const RowContent = styled.div`
 	border-radius: 0 0 5px 5px;
 	padding: 4px;
 	font-size: 16px;
+
+	img {
+		width: 100%;
+	}
 `;

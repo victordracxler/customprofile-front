@@ -1,16 +1,31 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import UserContext from '../context/UserContext';
 import PersonalInfo from '../components/PersonalInfo';
+import axios from 'axios';
 
 export default function MainPage() {
-	const { user, bearer } = useContext(UserContext);
+	const { user, baseUrl, userId } = useContext(UserContext);
+	const [firstName, setFirstName] = useState('');
 	const navigate = useNavigate();
+	const url = `${baseUrl}/user-info/${userId}`;
 
 	// if (!user && !bearer) {
 	// 	return navigate('/');
 	// }
+
+	useEffect(() => {
+		const promise = axios
+			.get(url)
+			.then((res) => {
+				console.log(res.data);
+				setFirstName(res.data.firstName);
+			})
+			.catch((err) => {
+				console.log(err.response.data);
+			});
+	}, []);
 
 	function signOut() {
 		// localStorage.removeItem('mwuser');
@@ -22,8 +37,8 @@ export default function MainPage() {
 	return (
 		<PageWrapper>
 			<Title>
-				<h1>Olá, {user}</h1>
-				<ion-icon name="exit-outline"></ion-icon>
+				<h1>Olá, {firstName}</h1>
+				<ion-icon name="exit-outline" onClick={signOut}></ion-icon>
 			</Title>
 			<PersonalInfo />
 

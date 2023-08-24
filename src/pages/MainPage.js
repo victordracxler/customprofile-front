@@ -30,13 +30,9 @@ export default function MainPage() {
 			<BttnsWrapper>
 				<AddEntryBttn
 					onClick={() =>
-						navigate('/new-entry', { state: { type: 'in' } })
+						navigate('/edit-info', { state: { type: 'in' } })
 					}
 				>
-					<ion-icon
-						name="add-circle-outline"
-						onClick={() => signOut()}
-					></ion-icon>
 					<h2>Editar informações</h2>
 				</AddEntryBttn>
 			</BttnsWrapper>
@@ -50,6 +46,7 @@ export const PageWrapper = styled.div`
 	align-items: center;
 	padding: 25px 25px 16px 25px;
 	font-family: 'Raleway', sans-serif;
+	min-height: 300px;
 `;
 
 export const Title = styled.div`
@@ -68,7 +65,7 @@ export const Title = styled.div`
 	}
 `;
 
-const BttnsWrapper = styled.div`
+export const BttnsWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -3,8 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import UserContext from '../context/UserContext';
+import { InfoRow, InfoWrapper, RowTitle } from './PersonalInfo';
 
-export default function PersonalInfo(params) {
+export default function EditPersonalInfo(params) {
 	const { userId, baseUrl } = useContext(UserContext);
 	const [userInfo, setUserInfo] = useState({});
 
@@ -29,88 +30,52 @@ export default function PersonalInfo(params) {
 
 				<InfoRow>
 					<RowTitle>Foto</RowTitle>
-					<RowContent>
-						<img src={userInfo.imageUrl} alt="" />
-					</RowContent>
+					<TextInput type="file" />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Nome</RowTitle>
-					<RowContent>{userInfo.firstName}</RowContent>
+					<TextInput type="text" placeholder={userInfo.firstName} />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Sobrenome</RowTitle>
-					<RowContent>{userInfo.lastName}</RowContent>
+					<TextInput type="text" placeholder={userInfo.lastName} />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Email</RowTitle>
-					<RowContent>{userInfo.email}</RowContent>
+					<TextInput type="text" placeholder={userInfo.email} />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>Sobre mim</RowTitle>
-					<RowContent>{userInfo.bio}</RowContent>
+					<TextInput type="text" placeholder={userInfo.bio} />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>linkedin</RowTitle>
-					<RowContent>{userInfo.linkedinUrl}</RowContent>
+					<TextInput type="text" placeholder={userInfo.linkedinUrl} />
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>instagram</RowTitle>
-					<RowContent>{userInfo.instagramUrl}</RowContent>
+					<TextInput
+						type="text"
+						placeholder={userInfo.instagramUrl}
+					/>
 				</InfoRow>
 
 				<InfoRow>
 					<RowTitle>twitter</RowTitle>
-					<RowContent>{userInfo.twitterUrl}</RowContent>
+					<TextInput type="text" placeholder={userInfo.twitterUrl} />
 				</InfoRow>
 			</InfoWrapper>
 		</>
 	);
 }
 
-export const InfoWrapper = styled.div`
-	width: 326px;
-	min-height: 446px;
-	background-color: #ffffff;
-	border-radius: 5px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 12px 12px 10px 12px;
-	font-family: 'Raleway', sans-serif;
-
-	h1 {
-		font-size: 22px;
-		font-weight: bold;
-		margin-bottom: 15px;
-	}
-`;
-
-export const InfoRow = styled.div`
-	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	width: 90%;
-	margin-bottom: 5px;
-	align-items: center;
-	text-align: center;
-`;
-
-export const RowTitle = styled.div`
-	width: 100%;
-	height: 30px;
-	background-color: #96d6d3;
-	font-weight: bold;
-	border-radius: 5px 5px 0 0;
-	padding: 4px;
-	font-size: 18px;
-`;
-const RowContent = styled.div`
+const TextInput = styled.input`
 	width: 100%;
 	background-color: #bfffdf;
 	min-height: 30px;

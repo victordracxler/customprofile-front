@@ -10,7 +10,7 @@ export default function SignInForm() {
 
 	const navigate = useNavigate();
 
-	const { setBearer, setUser, baseUrl } = useContext(UserContext);
+	const { setBearer, setUser, baseUrl, setUserId } = useContext(UserContext);
 
 	function handleSignIn(e) {
 		e.preventDefault();
@@ -31,6 +31,7 @@ export default function SignInForm() {
 				setBearer(newBearer);
 				localStorage.setItem('mcptoken', JSON.stringify(newBearer));
 				setUser(res.data.username);
+				setUserId(res.data.userId);
 				localStorage.setItem(
 					'mcpuser',
 					JSON.stringify(res.data.username)

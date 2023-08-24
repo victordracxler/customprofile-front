@@ -17,6 +17,8 @@ function UserProvider({ children }) {
 
 	const baseUrl = 'http://localhost:5000';
 
+	const [userId, setUserId] = useState(null);
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -25,6 +27,8 @@ function UserProvider({ children }) {
 				bearer,
 				setBearer,
 				baseUrl,
+				userId,
+				setUserId,
 			}}
 		>
 			{children}

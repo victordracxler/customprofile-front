@@ -14,7 +14,6 @@ export default function PersonalInfo(params) {
 		const promise = axios
 			.get(url)
 			.then((res) => {
-				console.log(res.data);
 				setUserInfo(res.data);
 			})
 			.catch((err) => {

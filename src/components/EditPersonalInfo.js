@@ -27,7 +27,6 @@ export default function EditPersonalInfo(params) {
 		const promise = axios
 			.get(url)
 			.then((res) => {
-				console.log(res.data);
 				setUserInfo(res.data);
 				setFormValues(res.data);
 			})

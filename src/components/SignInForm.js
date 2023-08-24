@@ -25,7 +25,6 @@ export default function SignInForm() {
 		const promise = axios
 			.post(url, body)
 			.then((res) => {
-				console.log(res.data);
 				const newBearer = `Bearer ${res.data.token}`;
 
 				setBearer(newBearer);

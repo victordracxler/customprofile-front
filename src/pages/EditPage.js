@@ -12,7 +12,6 @@ export default function EditPage(params) {
 		<PageWrapper>
 			<Title>
 				<h1>Edite seus dados</h1>
-				<ion-icon name="exit-outline"></ion-icon>
 			</Title>
 
 			<EditPersonalInfo />

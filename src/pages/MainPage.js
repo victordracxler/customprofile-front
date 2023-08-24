@@ -11,15 +11,14 @@ export default function MainPage() {
 	const navigate = useNavigate();
 	const url = `${baseUrl}/user-info/${userId}`;
 
-	if (!user && !bearer) {
-		return navigate('/');
-	}
+	// if (!user && !bearer) {
+	// 	return navigate('/');
+	// }
 
 	useEffect(() => {
 		const promise = axios
 			.get(url)
 			.then((res) => {
-				console.log(res.data);
 				setFirstName(res.data.firstName);
 			})
 			.catch((err) => {

@@ -1,11 +1,14 @@
 # Custom Profile
 
-Este projeto foi feito a partir de um desafio, que consiste em implementar perfis básicos de usuário e a possibilidade de alteração das informações do mesmo.
+This project was created as a result of a challenge, which involves implementing basic user profiles and the ability to modify their information.
 
-## Como rodar na sua máquina
+## Running on Your Machine
 
-Após clonar o repositório, executar o comando `$ npm install` para instalar as dependências.
+After cloning the repository, run the command `$ npm install` to install the dependencies.
 
+### Environment Variables
+
+Create the `.env` file and, following the structure of the `.env.example` file, provide the API address.
 
 ### `npm start`
 

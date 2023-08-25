@@ -1,10 +1,11 @@
-# Getting Started with Create React App
+# Custom Profile
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi feito a partir de um desafio, que consiste em implementar perfis básicos de usuário e a possibilidade de alteração das informações do mesmo.
 
-## Available Scripts
+## Como rodar na sua máquina
 
-In the project directory, you can run:
+Após clonar o repositório, executar o comando `$ npm install` para instalar as dependências.
+
 
 ### `npm start`
 
